@@ -3,6 +3,7 @@ package boot.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,5 +24,10 @@ public class UserService {
 		} else {
 			throw new BadCredentialsException("用户名或密码错误");
 		}
+	}
+	
+	@Secured("ADMIN")
+	public void protectedMethod(){
+		
 	}
 }
