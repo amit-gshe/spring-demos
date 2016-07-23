@@ -1,33 +1,31 @@
 package boot.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import boot.dto.UserDto;
 import boot.service.UserService;
 
 @RestController
-@RequestMapping("/user/")
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+	UserService userService;
 
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public Map<String, Object> signUp(UserDto userDto) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		userService.signUp(userDto);
-		return result;
+	@RequestMapping("/signin")
+	public void signin(@RequestParam String username, @RequestParam String password) {
+		userService.signin(username, password);
 	}
 
-	@RequestMapping("/{id}")
-	public UserDto loadUser(@PathVariable Long id) {
-		return userService.loadUser(id);
+	@Secured("ROLE_USER")
+	@RequestMapping("/oh")
+	public String protectedMethod(){
+		return "this is the protected content should not be accessed by a non-login user;";
+	}
+	
+	@Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }
