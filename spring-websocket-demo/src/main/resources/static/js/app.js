@@ -3,24 +3,17 @@
  */
 
 function connect() {
-	var socket = new SockJS('/hello');
-	stompClient = Stomp.over(socket);
-	stompClient.connect({}, function(frame) {
-		console.log('Connected: ' + frame);
-		stompClient.subscribe('/user/queue/hello', function(data) {
-			console.log("response: ",data.body);
-		});
-		sendName();
-	});
-	
-}
-
-function sendName() {
-    stompClient.send("/hello", {}, "Amit");
-}
-
-function print(){
-	
+	sock = new SockJS('/ws');
+	sock.onopen = function() {
+	     console.log('open');
+	     sock.send('hello server');
+	 };
+	 sock.onmessage = function(e) {
+	     console.log('message:', e.data);
+	 };
+	 sock.onclose = function() {
+	     console.log('close');
+	 };
 }
 
 window.onload=function(){
