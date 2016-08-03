@@ -6,3 +6,6 @@
 */.mvn/
 */.project
 */.settings/
+*/.gitignore
+*/.idea/*
+*/*.iml
