@@ -9,6 +9,7 @@
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 		<slf4j.version>1.5.8</slf4j.version>
+		<jackson.databind-version>2.8.1</jackson.databind-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,6 +42,11 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.databind-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
