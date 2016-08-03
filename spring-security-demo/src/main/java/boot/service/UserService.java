@@ -13,21 +13,29 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-	
-	public void signin(String username, String password) {
-		if ("admin".equals(username) && "password".equals(password)) {
-			List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
-			AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_USER"));
-			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username,
-					password, AUTHORITIES);
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-		} else {
-			throw new BadCredentialsException("用户名或密码错误");
-		}
-	}
-	
-	@Secured("ADMIN")
-	public void protectedMethod(){
-		
-	}
+
+    public void signin(String username, String password) {
+        if ("admin".equals(username) && "password".equals(password)) {
+
+            List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
+            AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username,
+                    password, AUTHORITIES);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        } else if ("user".equals(username) && "password".equals(password)) {
+            List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
+            AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_USER"));
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username,
+                    password, AUTHORITIES);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        } else {
+            throw new BadCredentialsException("用户名或密码错误");
+        }
+    }
+
+    @Secured("ROLE_ADMIN")
+    public void protectedMethod() {
+
+    }
 }

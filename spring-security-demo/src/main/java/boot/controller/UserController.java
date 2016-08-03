@@ -41,8 +41,9 @@ public class UserController {
 	public String welcome(){
 		return "welcome";
 	}
-	
+
 	@RequestMapping("/protected")
+	@ResponseBody
 	public void forbidden(){
 		userService.protectedMethod();
 	}
