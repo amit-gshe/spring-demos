@@ -1,5 +1,7 @@
 package app.domain;
 
+import app.domain.enums.BookType;
+
 public class Book {
 
 	String name;
@@ -7,6 +9,11 @@ public class Book {
 	String author;
 	
 	double price;
+	
+	BookType type;
+	
+	public Book() {
+    }
 
 	public Book(String name, String author, double price) {
 		this.name = name;
@@ -38,4 +45,11 @@ public class Book {
 		this.price = price;
 	}
 	
+	public BookType getType() {
+      return type;
+    }
+	
+	public void setType(BookType type) {
+      this.type = type;
+    }
 }
