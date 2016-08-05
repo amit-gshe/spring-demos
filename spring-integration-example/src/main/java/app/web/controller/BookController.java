@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.config.RealtimeAccessDecisionManager;
 import app.domain.Book;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Secured("ROLE_USER")
 @RestController
@@ -30,7 +33,7 @@ public class BookController {
   public String admin() {
     return "This is the protected content that can only be accessed by admin";
   }
-
+  
   @GetMapping("/books")
   public List<Book> bookList() {
     Book b1 = new Book("生命的季节", "罗素‧怀斯特", 26);
@@ -38,7 +41,9 @@ public class BookController {
     return Arrays.asList(b1, b2);
   }
 
-  @PutMapping("/book")
+  @PostMapping("/book")
+  @ApiOperation("Add a book")
+  @ApiResponses({@ApiResponse(code=400,message="参数错误")})
   public Book add(@RequestBody Book book) {
     return book;
   }
