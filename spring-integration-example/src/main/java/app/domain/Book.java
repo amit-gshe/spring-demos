@@ -1,55 +1,78 @@
 package app.domain;
 
-import app.domain.enums.BookType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+import app.enums.BookType;
+
+@Entity
 public class Book {
 
-	String name;
-	
-	String author;
-	
-	double price;
-	
-	BookType type;
-	
-	public Book() {
-    }
+  @Id
+  @GeneratedValue
+  Long id;
 
-	public Book(String name, String author, double price) {
-		this.name = name;
-		this.author = author;
-		this.price = price;
-	}
+  String name;
 
-	public String getName() {
-		return name;
-	}
+  String author;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  double price;
 
-	public String getAuthor() {
-		return author;
-	}
+  @Enumerated(EnumType.STRING)
+  BookType type;
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+  public Book() {}
 
-	public double getPrice() {
-		return price;
-	}
+  public Book(String name, String author, double price) {
+    this.name = name;
+    this.author = author;
+    this.price = price;
+  }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	public BookType getType() {
-      return type;
-    }
-	
-	public void setType(BookType type) {
-      this.type = type;
-    }
+  public Long getId() {
+    return id;
+  }
+  
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
+
+  public BookType getType() {
+    return type;
+  }
+
+  public void setType(BookType type) {
+    this.type = type;
+  }
+
+  @Override
+  public String toString() {
+    return "Book [id=" + id + ", name=" + name + ", author=" + author + ", price=" + price
+        + ", type=" + type + "]";
+  }
+  
+  
 }
