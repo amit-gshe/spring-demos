@@ -1,0 +1,1 @@
+insert into reader(name,gender,age) values('Lily','FEMALE',21);
