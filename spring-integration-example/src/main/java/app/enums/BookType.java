@@ -1,4 +1,4 @@
-package app.domain.enums;
+package app.enums;
 
 public enum BookType {
   PSYCHOLOGY
