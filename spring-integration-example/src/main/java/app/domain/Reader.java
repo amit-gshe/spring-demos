@@ -27,6 +27,7 @@ public class Reader {
   
   int age;
   
+  @Column(name="register_date")
   Date registeredDate = new Date();
   
   public Reader() {

@@ -1,1 +1,1 @@
-insert into reader(name,gender,age) values('Lily','FEMALE',21);
+insert into reader(name,gender,age,register_date) values('Lily','FEMALE',21,'2016-08-23 18:00:01');
