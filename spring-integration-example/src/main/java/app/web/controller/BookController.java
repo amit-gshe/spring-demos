@@ -16,17 +16,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-//@Secured("ROLE_USER")
 @RestController
 public class BookController {
 
   @Autowired
   RealtimeAccessDecisionManager accessDecisionManager;
-
-  @GetMapping("/user")
-  public String user() {
-    return "This is content that can be accessed by normal user";
-  }
 
   @Secured({"ROLE_ADMIN"})
   @GetMapping("/admin")

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,14 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 
-import app.config.DbConfig;
+import app.config.DevDbConfig;
 import app.domain.QReader;
 import app.domain.Reader;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes={DbConfig.class})
+@ContextConfiguration(classes={DevDbConfig.class})
 @Sql("classpath:test-reader-data.sql")
 @Transactional
+@ActiveProfiles("dev")
 public class ReaderServiceTest {
 
   @Autowired
@@ -32,9 +33,6 @@ public class ReaderServiceTest {
   
   @Autowired
   EntityManager entityManager;
-  
-  @Autowired
-  JdbcTemplate jdbcTemplate;
 
   @Test
   public void testQueryByIdAndShouldNotReturnNull() {    

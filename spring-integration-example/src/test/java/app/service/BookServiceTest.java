@@ -12,18 +12,20 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.config.DbConfig;
+import app.config.DevDbConfig;
 import app.domain.Book;
 import app.enums.BookType;
 import app.service.impl.BookServiceImpl;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes={DbConfig.class})
+@ContextConfiguration(classes={DevDbConfig.class})
 @Transactional
+@ActiveProfiles("dev")
 public class BookServiceTest {
 
   private static Logger logger = LoggerFactory.getLogger(BookServiceTest.class);
