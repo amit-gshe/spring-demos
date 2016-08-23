@@ -38,7 +38,7 @@ public class BookServiceTest {
     bookService = new BookServiceImpl(entityManager);
     Book book = new Book("a", "b", 200);
     book.setType(BookType.PSYCHOLOGY);
-    assertThat(bookService.saveBook(book), is(greaterThan(0l)));
+    assertThat(bookService.saveBook(book), greaterThan(0l));
     logger.debug("saved a book: {}",book.toString());
   }
 
