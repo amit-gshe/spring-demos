@@ -1,0 +1,1 @@
+insert into book(id,name,author, price) values(1,'双城记','狄更斯',9999);
