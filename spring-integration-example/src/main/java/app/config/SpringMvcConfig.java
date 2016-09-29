@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
@@ -42,5 +43,10 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
     builder.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm"));
     converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+  }
+  
+  @Override
+  public void configureViewResolvers(ViewResolverRegistry registry) {
+    registry.jsp();
   }
 }
